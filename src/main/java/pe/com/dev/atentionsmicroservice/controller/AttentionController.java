@@ -13,7 +13,7 @@ import pe.com.dev.atentionsmicroservice.service.AttentionService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/atentions")
+@RequestMapping("/api/v1//atentions")
 public class AttentionController {
     private final AttentionService attentionService;
     @PostMapping("/create")
@@ -26,8 +26,8 @@ public class AttentionController {
         return attentionService.findById(id);
     }
 
-    @GetMapping("/api/v1/schools")
-    public Page<Attention> getSummerSchools(
+    @GetMapping("/filter")
+    public Page<Attention> filterAttentions(
             @ModelAttribute AttentionFilter filter,
             @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
         return attentionService.filterAttentions(
